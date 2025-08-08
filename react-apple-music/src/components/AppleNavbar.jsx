@@ -3,26 +3,33 @@ import { Navbar, Container, Nav, Button, Form, InputGroup, FormControl, ListGrou
 import AppleLogo from '/music.svg';
 import AppleMain from './AppleMain';
 import AppleFooter from './AppleFooter';
+import ApplePlayer from './ApplePlayer';
 
 const AppleNavbar = () => {
     const [showSidebar, setShowSidebar] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
 
     const handleClose = () => setShowSidebar(false);
     const handleShow = () => setShowSidebar(true);
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        const input = e.target.elements.search.value;
+        if (input.trim() !== '') {
+            setSearchTerm(input);
+            handleClose(); 
+        }
+    };
+
     const SidebarContent = () => (
         <>
-            <Navbar.Brand href="#" className="mb-4 mx-auto">
-                <Image src={AppleLogo} height="25" alt="Apple Music Logo" />
-            </Navbar.Brand>
-
-            {/* Search bar sidebar */}
-            <Form className="d-flex w-100 mb-3 px-3">
+            {/* Search bar sidebar - Modificata per usare la funzione handleSearchSubmit */}
+            <Form className="d-flex w-100 mb-3 px-3" onSubmit={handleSearchSubmit}>
                 <InputGroup>
                     <InputGroup.Text className="bg-secondary bg-opacity-25 border-0 text-white">
                         <i className="bi bi-search apple-color-red"></i>
                     </InputGroup.Text>
-                    <FormControl type="search" placeholder="Cerca" className="bg-secondary bg-opacity-25 border-0 text-white"/>
+                    <FormControl name="search" type="search" placeholder="Cerca" className="bg-secondary bg-opacity-25 border-0 text-white"/>
                 </InputGroup>
             </Form>
 
@@ -47,13 +54,16 @@ const AppleNavbar = () => {
         <>
             {/* Sidebar desktop */}
             <Navbar expand="lg"
-                className="d-none d-lg-flex flex-column align-items-start position-fixed top-0 bottom-0 start-0 background-navbar"
+                className="d-none d-lg-flex flex-column align-items-start position-fixed top-0 bottom-0 start-0 background-navbar border-end border-secondary"
                 style={{ width: '240px', zIndex: 1030 }}>
+                <Navbar.Brand href="#" className="mb-4 mx-auto">
+                    <Image src={AppleLogo} height="25" alt="Apple Music Logo" />
+                </Navbar.Brand>
                 <SidebarContent />
             </Navbar>
 
             {/* Sidebar mobile - Offcanvas */}
-            <Offcanvas show={showSidebar} onHide={handleClose} className="bg-dark text-white" style={{ width: '240px' }}>
+            <Offcanvas show={showSidebar} onHide={handleClose} className="background-navbar text-white" style={{ width: '240px' }}>
                 <Offcanvas.Header closeButton closeVariant="white">
                     <Offcanvas.Title></Offcanvas.Title>
                 </Offcanvas.Header>
@@ -66,7 +76,6 @@ const AppleNavbar = () => {
             <Navbar fixed="top" className="p-lg-3 background-navbar"
                 style={{ zIndex: 1020, marginLeft: '0', width: '100%' }}>
                 <Container fluid className="justify-content-between">
-
                     {/* Desktop */}
                     <div className="d-none d-lg-flex w-100 align-items-center justify-content-between"
                         style={{ marginLeft: '240px', width: 'calc(100% - 240px)' }} >
@@ -77,10 +86,10 @@ const AppleNavbar = () => {
                             <Nav.Link href="#" className="mx-2 text-white"><i className="bi bi-skip-forward-fill"></i></Nav.Link>
                         </Nav>
 
-                        {/* Search */}
-                        <Form className="flex-grow-1 mx-3">
+                        {/* Search Desktop */}
+                        <Form className="flex-grow-1 mx-3" onSubmit={handleSearchSubmit}>
                             <InputGroup>
-                                <FormControl type="text" placeholder="" className="bg-secondary bg-opacity-25 border-0 text-white"
+                                <FormControl name="search" type="text" placeholder="Cerca su Apple Music" className="bg-secondary bg-opacity-25 border-0 text-white"
                                     style={{ minWidth: '400px', '--bs-bg-opacity': '.1' }} />
                             </InputGroup>
                         </Form>
@@ -106,8 +115,9 @@ const AppleNavbar = () => {
                 </Container>
             </Navbar>
 
-            {/* Main */}
-            <AppleMain />
+            {/* Main - Passa searchTerm come prop */}
+            <AppleMain searchTerm={searchTerm} />
+            <ApplePlayer/>
             <AppleFooter/>
         </>
     );
