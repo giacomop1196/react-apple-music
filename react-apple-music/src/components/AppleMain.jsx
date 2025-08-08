@@ -70,7 +70,7 @@ const AppleMain = () => {
             )}
             {results && (
                 <Container fluid className='background-main mt-5 pt-5'>
-                    <div style={{ marginLeft: '240px', padding: '20px', color: 'white' }}>
+                    <div className='main-content-wrapper'>
 
                         {/* Sezione Novità */}
                         <div className="mb-5">
