@@ -1,52 +1,76 @@
 .apple-color-red {
-    color: #FA586A!important;
+    color: #FA586A !important;
 }
 
 .button-red {
-    color: white!important;
-    background-color: #FA586A!important;
-    font-weight: 500!important;
-    border: none!important;
+    color: white !important;
+    background-color: #FA586A !important;
+    font-weight: 500 !important;
+    border: none !important;
 }
 
 .button-mobile {
-    color: #FA586A!important;
-    background-color: transparent!important;
-    font-weight: 500!important;
-    border: none!important;
+    color: #FA586A !important;
+    background-color: transparent !important;
+    font-weight: 500 !important;
+    border: none !important;
 }
 
 .background-navbar {
-    background-color: #2E2E2E!important;
+    background-color: #2E2E2E !important;
 }
 
 .background-main {
-    background-color: #1F1F1F!important;
+    background-color: #1F1F1F !important;
 }
 
 .footer-custom {
-  background-color: #323232;
-  color: #f5f5f7; 
-  padding: 40px 0;
+    background-color: #323232;
+    color: #f5f5f7;
+    padding: 40px 0;
 }
 
 .footer-custom a {
-  color: #d2d2d7;
-  text-decoration: none;
-  margin-right: 15px; 
+    color: #d2d2d7;
+    text-decoration: none;
+    margin-right: 15px;
 }
 
 .footer-custom a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .footer-custom hr {
-  border-color: #4a4a4e;
-  margin-top: 15px;
-  margin-bottom: 15px;
+    border-color: #4a4a4e;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .footer-custom .text-muted {
-  color: #8f8f91 !important;
-  font-size: 0.9em;
+    color: #8f8f91 !important;
+    font-size: 0.9em;
+}
+
+.explore-card {
+    background-color: #2c2c2e;
+    color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.explore-card:hover {
+    background-color: #4a4a4e;
+}
+
+.explore-card .arrow-icon {
+    color: #c95159;
+    font-size: 1.5rem;
+    margin-left: 10px;
 }
