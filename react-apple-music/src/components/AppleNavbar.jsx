@@ -53,8 +53,9 @@ const AppleNavbar = () => {
     return (
         <>
             {/* Sidebar desktop */}
+            {/* Usa d-none e d-xl-flex per mostrare solo su schermi extra-large (desktop) */}
             <Navbar expand="lg"
-                className="d-none d-lg-flex flex-column align-items-start position-fixed top-0 bottom-0 start-0 background-navbar border-end border-secondary"
+                className="d-none d-xl-flex flex-column align-items-start position-fixed top-0 bottom-0 start-0 background-navbar border-end border-secondary"
                 style={{ width: '240px', zIndex: 1030 }}>
                 <Navbar.Brand href="#" className="mb-4 mx-auto">
                     <Image src={AppleLogo} height="25" alt="Apple Music Logo" />
@@ -63,7 +64,8 @@ const AppleNavbar = () => {
             </Navbar>
 
             {/* Sidebar mobile - Offcanvas */}
-            <Offcanvas show={showSidebar} onHide={handleClose} className="background-navbar text-white" style={{ width: '240px' }}>
+            {/* Usa d-xl-none per mostrare su schermi piccoli e medi (mobile, tablet) */}
+            <Offcanvas show={showSidebar} onHide={handleClose} className="background-navbar text-white d-xl-none" style={{ width: '240px' }}>
                 <Offcanvas.Header closeButton closeVariant="white">
                     <Offcanvas.Title></Offcanvas.Title>
                 </Offcanvas.Header>
@@ -77,7 +79,7 @@ const AppleNavbar = () => {
                 style={{ zIndex: 1020, marginLeft: '0', width: '100%' }}>
                 <Container fluid className="justify-content-between">
                     {/* Desktop */}
-                    <div className="d-none d-lg-flex w-100 align-items-center justify-content-between"
+                    <div className="d-none d-xl-flex w-100 align-items-center justify-content-between"
                         style={{ marginLeft: '240px', width: 'calc(100% - 240px)' }} >
                         {/* Player */}
                         <Nav className="d-flex align-items-center">
@@ -89,7 +91,7 @@ const AppleNavbar = () => {
                         {/* Search Desktop */}
                         <Form className="flex-grow-1 mx-3" onSubmit={handleSearchSubmit}>
                             <InputGroup>
-                                <FormControl name="search" type="text" placeholder="Cerca su Apple Music" className="bg-secondary bg-opacity-25 border-0 text-white"
+                                <FormControl name="search" type="text" className="bg-secondary bg-opacity-25 border-0 text-white"
                                     style={{ minWidth: '400px', '--bs-bg-opacity': '.1' }} />
                             </InputGroup>
                         </Form>
@@ -102,7 +104,7 @@ const AppleNavbar = () => {
                     </div>
 
                     {/* Mobile */}
-                    <div className="d-flex d-lg-none w-100 align-items-center justify-content-between">
+                    <div className="d-flex d-xl-none w-100 align-items-center justify-content-between">
                         {/* Pulsante sidebar */}
                         <Button variant="outline-light" size="sm" onClick={handleShow}>
                             <i className="bi bi-list"></i>
@@ -117,7 +119,9 @@ const AppleNavbar = () => {
 
             {/* Main - Passa searchTerm come prop */}
             <AppleMain searchTerm={searchTerm} />
+            {/*Player da mobile*/}
             <ApplePlayer/>
+            {/*Footer*/}
             <AppleFooter/>
         </>
     );

@@ -8,13 +8,10 @@ import StephanImg from '/images/2d.png';
 import JuliaImg from '/images/2e.png';
 
 import { useState, useEffect } from 'react'
-
-
-
+import { useDispatch } from 'react-redux';
+import { setCurrentSong } from '../redux/store/playerSlice'; 
 
 const AppleMain = ({ searchTerm }) => {
-
-    const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchTerm || 'linkin park'}`
 
     const [results, setResults] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -56,7 +53,11 @@ const AppleMain = ({ searchTerm }) => {
             })
     }
 
+const dispatch = useDispatch();
 
+    const handleSongClick = (song) => {
+        dispatch(setCurrentSong(song)); // Usa la nuova action creator
+    };
 
     return (
         <>
@@ -142,10 +143,10 @@ const AppleMain = ({ searchTerm }) => {
                             </h2>
                             <Row className="g-0">
                                 {results.data.map((song) => (
-                                    <Col key={song.id} xs={6} sm={4} md={3} lg={2} className="p-1">
+                                    <Col key={song.id} xs={6} sm={4} md={3} lg={2} className="p-1" >
                                         <div style={{ aspectRatio: '1 / 1', width: '100%', position: 'relative' }}>
                                             <Image src={song.album.cover} alt={song.title} rounded fluid style={{ top: 0, left: 0, }}
-                                                className='cursor-pointer h-100 w-100 object-fit-cover position-absolute' />
+                                                className='cursor-pointer h-100 w-100 object-fit-cover position-absolute' onClick={() => handleSongClick(song)} />
                                         </div>
                                         <p className="mt-2 mb-0 text-truncate" title={song.title}>{song.title}</p>
                                         <p className="text-white-50 text-truncate" title={song.artist.name}>{song.artist.name}</p>

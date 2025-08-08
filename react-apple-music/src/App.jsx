@@ -6,7 +6,9 @@ import AppleNavbar from './components/AppleNavbar';
 function App() {
 
   return (
-   <AppleNavbar/>
+
+      <AppleNavbar />
+
   )
 }
 

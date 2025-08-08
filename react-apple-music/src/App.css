@@ -80,7 +80,7 @@
   color: white;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .main-content-wrapper {
     margin-left: 240px;
   }
